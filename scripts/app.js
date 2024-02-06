@@ -6,13 +6,12 @@ const form = document.querySelector('#form');
 
 const APP_TITLE = document.title;
 
-const technologies = [
-	{ title: 'HTML', description: 'HTML Text', type: 'html', done: false },
-	{ title: 'CSS', description: 'CSS Text', type: 'css', done: false },
-	{ title: 'JavaScript', description: 'JavaScript Text', type: 'javascript', done: false },
-	{ title: 'Git', description: 'Git Text', type: 'git', done: false },
-	{ title: 'React', description: 'React Text', type: 'react', done: false },
-];
+const technologies = [];
+
+// { title: 'HTML', description: 'HTML Text', type: 'html', done: false },
+// { title: 'CSS', description: 'CSS Text', type: 'css', done: false },
+// { title: 'JavaScript', description: 'JavaScript Text', type: 'javascript', done: false },
+// { title: 'Git', description: 'Git Text', type: 'git', done: false },
 
 content.addEventListener('click', openCard);
 backdrop.addEventListener('click', closeModal);
@@ -133,6 +132,15 @@ function createTech(event) {
 			description.classList.remove('invalid');
 		}, 2000);
 		return;
+	}
+
+	for (const tech of technologies) {
+		if (tech.type === title.value.toLowerCase()) {
+			alert('this technology has already been added');
+			title.value = '';
+			description.value = '';
+			return;
+		}
 	}
 
 	const newTech = {
