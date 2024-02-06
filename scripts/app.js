@@ -8,11 +8,6 @@ const APP_TITLE = document.title;
 
 const technologies = [];
 
-// { title: 'HTML', description: 'HTML Text', type: 'html', done: false },
-// { title: 'CSS', description: 'CSS Text', type: 'css', done: false },
-// { title: 'JavaScript', description: 'JavaScript Text', type: 'javascript', done: false },
-// { title: 'Git', description: 'Git Text', type: 'git', done: false },
-
 content.addEventListener('click', openCard);
 backdrop.addEventListener('click', closeModal);
 modal.addEventListener('change', toggleTech);
@@ -32,10 +27,14 @@ function toModal(tech) {
 		<h2>${tech.title}</h2>
 		<p>${tech.description}</p>
 		<hr />
-		<div>
-	  		<input type="checkbox" id="done" ${checked} data-type="${tech.type}"/>
-	  		<label for="done">Выучил</label>
+		<div class="modal-container">
+			<div>
+				<input type="checkbox" id="done" ${checked} data-type="${tech.type}"/>
+				<label for="done">Выучил</label>
+  			</div>
+  			<div class="remove-btn" id="remove" data-type="${tech.type}">Delete</div>
 		</div>
+		
 	`;
 }
 
@@ -44,8 +43,6 @@ function toggleTech(event) {
 	const tech = technologies.find(t => t.type === type);
 	tech.done = event.target.checked;
 
-	// console.log(technologies);
-
 	init();
 }
 
@@ -53,6 +50,9 @@ function openModal(html, title = APP_TITLE) {
 	document.title = `${title} | ${APP_TITLE}`;
 	modal.innerHTML = html;
 	modal.classList.add('open');
+
+	const removeBtn = document.querySelector('#remove');
+	removeBtn.addEventListener('click', removeTech);
 }
 
 function closeModal() {
@@ -157,5 +157,13 @@ function createTech(event) {
 	init();
 }
 
-init();
+function removeTech(event) {
+	const type = event.target.dataset.type;
+	const index = technologies.findIndex(t => t.type === type);
+	technologies.splice(index, 1);
 
+	closeModal();
+	init();
+}
+
+init();

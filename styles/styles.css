@@ -127,6 +127,30 @@ body {
   display: block;
 }
 
+.modal-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.remove-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 25px;
+  font-weight: 700;
+  border-radius: var(--radius);
+  border: var(--border);
+  background: aliceblue;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background: #e75a5a;
+  transition: 0.5s background;
+}
+
 .modal-backdrop {
   display: none;
   position: fixed;
@@ -204,7 +228,3 @@ body {
   background: #fff;
   cursor: pointer;
 }
-
-
-
-
