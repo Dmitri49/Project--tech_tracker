@@ -67,7 +67,7 @@ function init() {
 
 function renderCards() {
 	if (technologies.length === 0) {
-		content.innerHTML = '<p class="empty">Add first technologie</p>';
+		content.innerHTML = '<p class="empty">Добавить первую технологию</p>';
 	} else {
 		content.innerHTML = technologies.map(toCard).join('');
 	}
